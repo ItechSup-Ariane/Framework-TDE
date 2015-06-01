@@ -1,0 +1,32 @@
+form {
+	width: 600px;
+}
+.champs{
+	width: 100%;
+	margin-bottom: 20px;
+	float: left;
+}
+label {
+	float: left;
+	width: 40%;
+}
+.bloc_radio,
+input,
+textarea,
+select{
+	width: 55%;
+	float: left;
+}
+input[type="radio"]{
+	width:10px;
+	margin-left: 0;
+}
+input[type="submit"]{
+	width:auto;
+}
+.error_message{
+	font-weight: bold;
+	color: #F00;
+	width: 100%;
+	float: left;
+}
