@@ -14,9 +14,10 @@ class InputSelect extends Widget{
     }
     function render() {
         $return = '<div class="champs"><label>'.$this->getLabel().' : '.$this->getLabelRequis().'</label>
-		<select name="'.$this->getNom().'">';
+		<select name="'.$this->getNom().($this->getOptions('multiple')?'[]':'').'" '.($this->getOptions('multiple')?'multiple':'').'>';
 		foreach($this->selectOptions as $key => $value) {
-			$return .= '<option value="'.$key.'" '.(($this->getValue() == $key)?'selected':'').'>'.$value.'</option>';
+			if ($this->getOptions('multiple')) $return .= '<option value="'.$key.'" '.(in_array($key,$this->selectOptions)?'selected':'').'>'.$value.'</option>';
+			else $return .= '<option value="'.$key.'" '.(($this->getValue() == $key)?'selected':'').'>'.$value.'</option>';
 		}
 		$return .= '</select>'
 		.$this->getMessageErreur()

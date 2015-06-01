@@ -28,37 +28,7 @@ spl_autoload_register(function ($class) {
     if (file_exists($file)) {
         require $file;
     }
-	//echo $file.'<br />';
 });
-
-/*
-// Génération des inputs
-$inputs = array(
-	'nom' => new \ItechSup\Widgets\InputText\InputName('nom','Saisissez votre nom', array('requis'=>1, 'id'=>'id_nom2')),
-	'prenom' => new \ItechSup\Widgets\InputText\InputName('prenom','Saisissez votre prénom'),
-	'mail' => new \ItechSup\Widgets\InputText\InputMail('mail','Saisissez votre mail'),
-	'mailVerif' => new \ItechSup\Widgets\InputText\InputMail('mailVerif','Retapez votre mail'),
-	'password' => new \ItechSup\Widgets\InputText\InputPassword('password','Saisissez votre mot de passe'),
-	'passwordVerif' => new \ItechSup\Widgets\InputText\InputPassword('passwordVerif','Retapez votre mot de passe'),
-	'telephone' => new \ItechSup\Widgets\InputTel('telephone','Saisissez votre téléphone',array('requis'=>1)),
-	'cp' => new \ItechSup\Widgets\InputCp('cp', 'Saisissez votre code postal'),
-	'ville' => new \ItechSup\Widgets\InputText\InputName('ville', 'Saisissez votre ville'),
-	'commentaire' => new \ItechSup\Widgets\InputTextarea('commentaire','Saisissez votre commentaire'),
-	'age' => new \ItechSup\Widgets\InputSelect('age','Choisissez votre âge',array(''=>'Choisissez','0-9'=>'0-9 ans','10-19'=>'10-19 ans','20-29'=>'20-29 ans','30-39'=>'30-39 ans','40-49'=>'40-49 ans','50+'=>'50 ans et plus'),array('requis'=>1)),
-	'sexe' => new \ItechSup\Widgets\InputRadio('sexe','Choisissez votre sexe',array('h'=>'Masculin','f'=>'Féminin'),array('requis'=>1)),
-	'submit_form' => new \ItechSup\Widgets\InputButton('submit_form', 'Envoyer', 'submit')
-);
-
-// Vérification des correspondances
-$verif_couple = array(
-	array($inputs['cp'],$inputs['ville'], 'couple'),
-	array($inputs['mail'],$inputs['mailVerif']),
-	array($inputs['password'],$inputs['passwordVerif'])
-);
-
-// Génération du formulaire
-$form = new \ItechSup\Form('mon_form', $inputs);
-*/
 
 // Génération du formulaire
 $form = new \ItechSup\Form('mon_form');
@@ -71,9 +41,10 @@ $form->addWidget(new \ItechSup\Widgets\InputText\InputCp('cp', 'Saisissez votre 
 $form->addWidget(new \ItechSup\Widgets\InputText('ville', 'Saisissez votre ville'));
 $form->addWidget(new \ItechSup\Widgets\InputTextarea('commentaire','Saisissez votre commentaire'));
 $form->addWidget(new \ItechSup\Widgets\InputSelect('age','Choisissez votre âge',array(''=>'Choisissez','0-9'=>'0-9 ans','10-19'=>'10-19 ans','20-29'=>'20-29 ans','30-39'=>'30-39 ans','40-49'=>'40-49 ans','50+'=>'50 ans et plus'),array('requis'=>1)));
+$form->addWidget(new \ItechSup\Widgets\InputSelect('heure','Choisissez votre heure (plusieurs choix possibles)',array('0-3'=>'moins de 3h','4-6'=>'de 3 à 6h','7+'=>'plus de 6h'),array('multiple'=>true)));
 $form->addWidget(new \ItechSup\Widgets\InputInt('enfant','Saisissez le nombre d\'enfants',array('default'=>0)));
 $form->addWidget(new \ItechSup\Widgets\InputRadio('sexe','Choisissez votre sexe',array('h'=>'Masculin','f'=>'Féminin'),array('required'=>1)));
-$form->addWidget(new \ItechSup\Widgets\InputCheckBox('vehicule','Choisissez votre véhicule',array('moto'=>'Moto','velo'=>'vélo', 'voiture'=>'voiture'),array('required'=>1)));
+$form->addWidget(new \ItechSup\Widgets\InputCheckBox('vehicule','Choisissez votre véhicule',array('moto'=>'Moto','velo'=>'vélo', 'voiture'=>'voiture')));
 $form->addWidget(new \ItechSup\Widgets\InputButton('submit_form', 'Envoyer', 'submit'));
 
 /*
@@ -118,29 +89,25 @@ if (!empty($_POST)) {
 
 	// On vérifie si les données sont valides
 	if ($form->validate()){
-		echo '<pre>';
-		print_r($_POST);
-		echo '</pre>';
+		$affichage_post = true;
 	}
 }
 else {
-	/*
 	// On rempli le formulaire par défaut
 	$data = array(
-		'nom' => 'Nom par défaut',
-		'prenom' => 'Prénom par défaut',
-		'mail' => 'pas_de@mail.fr',
-		'password' => 'mon_mot_de_passe',
-		'telephone' => '0240404040',
+		'nom' => 'Duchêne',
+		'prenom' => 'Thomas',
+		'mail' => 'thomas@lepamplemousse.fr',
+		'telephone' => '+33(6).56.20.72.35',
 		'cp' => '44000',
 		'ville' => 'Nantes',
 		'commentaire' => 'pas de commentaire',
 		'age' => '30-39',
 		'sexe' => 'h',
+		'vehicule' => array('moto'=>true,'voiture'=>true),
 		'submit_form' => 'Envoyer'
 	);
 	$form->bind($data);
-	*/
 }
 ?>
 
@@ -149,10 +116,20 @@ else {
     <head>
         <meta charset="UTF-8">
         <title>Mon formulaire</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link href="http://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" type="text/css" />
     </head>
     <body>
-		<h1>Mon formulaire</h1>
-		<?php echo $form->render(); ?>
+		<div id="wrapper">
+			<h1>Mon formulaire</h1>
+			<?php echo $form->render(); ?>
+			<?php 
+				if ($affichage_post == true) {
+					echo '<pre>';
+					print_r($_POST);
+					echo '</pre>';
+				}
+			?>
+		</div>
     </body>
 </html>

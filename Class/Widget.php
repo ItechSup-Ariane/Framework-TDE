@@ -26,9 +26,9 @@ abstract class Widget{
         return $this->label;
     }
     function getValue() {
-		if (isset($this->options['default'])) {
+		/*if (isset($this->options['default'])) {
 			$this->setValue($this->options['default']);
-		}
+		}*/
         return $this->value;
     }
     function getType() {
@@ -93,7 +93,7 @@ abstract class Widget{
         $this->libelle = $libelle;
     }
     function setLabelRequis() {
-		$this->labelRequis = '<b style="color: red;">*</b>';
+		$this->labelRequis = '<b class="asterix">*</b>';
 	}
     function setPlaceholder($placeholder) {
 		$this->placeholder = 'placeholder="'.$placeholder.'"';
