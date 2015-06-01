@@ -73,6 +73,7 @@ $form->addWidget(new \ItechSup\Widgets\InputTextarea('commentaire','Saisissez vo
 $form->addWidget(new \ItechSup\Widgets\InputSelect('age','Choisissez votre âge',array(''=>'Choisissez','0-9'=>'0-9 ans','10-19'=>'10-19 ans','20-29'=>'20-29 ans','30-39'=>'30-39 ans','40-49'=>'40-49 ans','50+'=>'50 ans et plus'),array('requis'=>1)));
 $form->addWidget(new \ItechSup\Widgets\InputInt('enfant','Saisissez le nombre d\'enfants',array('default'=>0)));
 $form->addWidget(new \ItechSup\Widgets\InputRadio('sexe','Choisissez votre sexe',array('h'=>'Masculin','f'=>'Féminin'),array('required'=>1)));
+$form->addWidget(new \ItechSup\Widgets\InputCheckBox('vehicule','Choisissez votre véhicule',array('moto'=>'Moto','velo'=>'vélo', 'voiture'=>'voiture'),array('required'=>1)));
 $form->addWidget(new \ItechSup\Widgets\InputButton('submit_form', 'Envoyer', 'submit'));
 
 /*
