@@ -16,7 +16,7 @@ class InputSelect extends Widget{
         $return = '<div class="champs"><label>'.$this->getLabel().' : '.$this->getLabelRequis().'</label>
 		<select name="'.$this->getNom().($this->getOptions('multiple')?'[]':'').'" '.($this->getOptions('multiple')?'multiple':'').'>';
 		foreach($this->selectOptions as $key => $value) {
-			if ($this->getOptions('multiple')) $return .= '<option value="'.$key.'" '.(in_array($key,$this->selectOptions)?'selected':'').'>'.$value.'</option>';
+			if ($this->getOptions('multiple')) $return .= '<option value="'.$key.'" '.((is_array($this->getValue()))?(in_array($key,$this->getValue())?'selected':''):'').'>'.$value.'</option>';
 			else $return .= '<option value="'.$key.'" '.(($this->getValue() == $key)?'selected':'').'>'.$value.'</option>';
 		}
 		$return .= '</select>'

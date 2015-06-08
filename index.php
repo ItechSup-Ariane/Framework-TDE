@@ -122,14 +122,14 @@ else {
     <body>
 		<div id="wrapper">
 			<h1>Mon formulaire</h1>
-			<?php echo $form->render(); ?>
 			<?php 
 				if ($affichage_post == true) {
-					echo '<pre>';
+					echo '<div id="resultat"><pre>';
 					print_r($_POST);
-					echo '</pre>';
+					echo '</pre></div>';
 				}
 			?>
+			<?php echo $form->render(); ?>
 		</div>
     </body>
 </html>
