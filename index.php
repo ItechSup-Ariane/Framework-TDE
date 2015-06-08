@@ -32,6 +32,22 @@ spl_autoload_register(function ($class) {
 
 // Génération du formulaire
 $form = new \ItechSup\Form('mon_form');
+
+/* *********************** 	*/
+/* 		Inputs simples		*/
+/* *********************** 	*/
+/*
+	Paramètres obligatoires
+		nom de l'élément
+		label de l'élément
+	
+	Paramètres optionnels
+		tableau d'éléments
+			placeholder : affichage informatif au sein de l'input
+			required : spécifie si l'élément est requis (obligatoire)
+			id : permet de spécifier un identifiant en particulier, si non renseigné, l'élément est identifié par son nom
+			default : permet de spécifier une valeur par défaut
+*/
 $form->addWidget(new \ItechSup\Widgets\InputText('nom','Saisissez votre nom', array('placeholder'=>'Nom','required'=>1, 'id'=>'id_nom2')));
 $form->addWidget(new \ItechSup\Widgets\InputText('prenom','Saisissez votre prénom', array('placeholder'=>'Prénom')));
 $form->addWidget(new \ItechSup\Widgets\InputText\InputMail('mail','Saisissez votre mail', array('placeholder'=>'example@mail.com')));
@@ -40,12 +56,51 @@ $form->addWidget(new \ItechSup\Widgets\InputTel('telephone','Saisissez votre té
 $form->addWidget(new \ItechSup\Widgets\InputText\InputCp('cp', 'Saisissez votre code postal'));
 $form->addWidget(new \ItechSup\Widgets\InputText('ville', 'Saisissez votre ville'));
 $form->addWidget(new \ItechSup\Widgets\InputTextarea('commentaire','Saisissez votre commentaire'));
-$form->addWidget(new \ItechSup\Widgets\InputSelect('age','Choisissez votre âge',array(''=>'Choisissez','0-9'=>'0-9 ans','10-19'=>'10-19 ans','20-29'=>'20-29 ans','30-39'=>'30-39 ans','40-49'=>'40-49 ans','50+'=>'50 ans et plus'),array('requis'=>1)));
-$form->addWidget(new \ItechSup\Widgets\InputSelect('heure','Choisissez votre heure (plusieurs choix possibles)',array('0-3'=>'moins de 3h','4-6'=>'de 3 à 6h','7+'=>'plus de 6h'),array('multiple'=>true)));
 $form->addWidget(new \ItechSup\Widgets\InputInt('enfant','Saisissez le nombre d\'enfants',array('default'=>0)));
-$form->addWidget(new \ItechSup\Widgets\InputRadio('sexe','Choisissez votre sexe',array('h'=>'Masculin','f'=>'Féminin'),array('required'=>1)));
-$form->addWidget(new \ItechSup\Widgets\InputCheckBox('vehicule','Choisissez votre véhicule',array('moto'=>'Moto','velo'=>'vélo', 'voiture'=>'voiture')));
+
+/* *********************** 	*/
+/* 		Inputs listes		*/
+/* *********************** 	*/
+/*
+	Paramètres obligatoires
+		nom de l'élément
+		label de l'élément
+		tableau contenant les différentes valeurs
+			Liste "simple"
+				clé de l'élément
+				valeur affiché de l'élement
+			Liste "groupe"
+				tableaux contenant les groupes
+					clé de l'élément
+					valeur affiché de l'élement
+	
+	Paramètres optionnels
+		tableau d'éléments
+			required : spécifie si l'élément est requis (obligatoire)
+			id : permet de spécifier un identifiant en particulier, si non renseigné, l'élément est identifié par son nom
+*/
+// Listes "simples"
+$form->addWidget(new \ItechSup\Widgets\InputList\InputSelect('age','Choisissez votre âge',array(''=>'Choisissez','0-9'=>'0-9 ans','10-19'=>'10-19 ans','20-29'=>'20-29 ans','30-39'=>'30-39 ans','40-49'=>'40-49 ans','50+'=>'50 ans et plus'),array('requis'=>1)));
+$form->addWidget(new \ItechSup\Widgets\InputList\InputSelect('plateforme','Choisissez votre plateforme',array('Console' => array('xbox' => 'X-Box','ps4' => 'PlayStation 4'), 'PC' => array('linux' => 'Linux','mac' => 'Macintosh','microsoft' => 'Windows'))));
+$form->addWidget(new \ItechSup\Widgets\InputList\InputRadio('sexe','Choisissez votre sexe',array('h'=>'Masculin','f'=>'Féminin'),array('required'=>1)));
+$form->addWidget(new \ItechSup\Widgets\InputList\InputCheckBox('vehicule','Choisissez votre véhicule',array('moto'=>'Moto','velo'=>'vélo', 'voiture'=>'voiture')));
+// Listes "groupes"
+$form->addWidget(new \ItechSup\Widgets\InputList\InputSelect('heure','Choisissez votre heure<br />(plusieurs choix possibles)',array('0-3'=>'moins de 3h','4-6'=>'de 3 à 6h','7+'=>'plus de 6h'),array('multiple'=>true)));
+$form->addWidget(new \ItechSup\Widgets\InputList\InputSelect('jeux','Choisissez vos jeux',array('MMO' => array('wow' => 'World Of Warcraft','gw2' => 'Guild Wars 2'), 'FPS' => array('bf' => 'Battlefield','cod' => 'Call Of Duty')),array('multiple'=>true)));
+$form->addWidget(new \ItechSup\Widgets\InputList\InputRadio('type_joueur','Choisissez votre type de jeu',array('Hard-Core'=>array('hl'=>'Hight Level','farm'=>'Farm'),'Casual'=>array('explo'=>'Exploration','trade'=>'Trade'))));
+$form->addWidget(new \ItechSup\Widgets\InputList\InputCheckBox('materiel','Choisissez votre matériel',array('Périphériques' => array('clavier'=>'Clavier','souris'=>'Souris','manette'=>'Manette'), 'Audio' => array('casque'=>'Casque','enceintes'=>'Enceintes'))));
+
+/* *********************** 	*/
+/* 			Boutons			*/
+/* *********************** 	*/
+/*
+	Paramètres obligatoires
+		nom de l'élément
+		label de l'élément
+		type de bouton (submit, reset)
+*/
 $form->addWidget(new \ItechSup\Widgets\InputButton('submit_form', 'Envoyer', 'submit'));
+$form->addWidget(new \ItechSup\Widgets\InputButton('reset_form', 'Vider', 'reset'));
 
 /*
 // Vérification du couple CP - Ville

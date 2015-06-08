@@ -26,9 +26,9 @@ abstract class Widget{
         return $this->label;
     }
     function getValue() {
-		/*if (isset($this->options['default'])) {
+		if (isset($this->options['default']) && empty($this->value)) {
 			$this->setValue($this->options['default']);
-		}*/
+		}
         return $this->value;
     }
     function getType() {

@@ -1,5 +1,5 @@
 body{
-	background: url("http://onlyfreewallpaper.com/walls/kitsch-me-if-you-can-HD.jpg") no-repeat;
+	background: url("http://onlyfreewallpaper.com/walls/kitsch-me-if-you-can-HD.jpg") no-repeat left top fixed;
 	font-family: "Indie Flower",cursive;
 }
 #wrapper{
@@ -48,7 +48,8 @@ input[type="radio"]{
 	width:10px;
 	margin-left: 0;
 }
-input[type="submit"]{
+input[type="submit"],
+input[type="reset"]{
 	width:auto;
 }
 .error_message{
