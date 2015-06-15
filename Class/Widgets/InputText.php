@@ -9,7 +9,7 @@ class InputText extends Widget
 
     protected $type = 'text';
 
-    function __construct($name_widget, $label_widget = NULL, $options_widget = NULL)
+    public function __construct($name_widget, $label_widget = NULL, $options_widget = NULL)
     {
         parent::__construct($name_widget, $label_widget, $options_widget);
     }

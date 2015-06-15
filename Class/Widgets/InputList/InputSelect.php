@@ -10,13 +10,13 @@ class InputSelect extends InputList
     protected $type = 'select';
     private $selectOptions;
 
-    function __construct($name_widget, $label_widget = NULL, $options_widget = NULL, $options = NULL)
+    public function __construct($name_widget, $label_widget = NULL, $options_widget = NULL, $options = NULL)
     {
         parent::__construct($name_widget, $label_widget, $options);
         $this->selectOptions = $options_widget;
     }
 
-    function create_input($valeur, $affichage)
+    public function create_input($valeur, $affichage)
     {
         if ($this->getOptions('multiple')) {
             $return = '<option value="' . $valeur . '" ' . ((is_array($this->getValue())) ? (in_array($valeur, $this->getValue()) ? 'selected' : '') : '') . '>' . $affichage . '</option>';
@@ -26,7 +26,7 @@ class InputSelect extends InputList
         return $return;
     }
 
-    function render()
+    public function render()
     {
         $return = '<div class="champs"><label>' . $this->getLabel() . ' : ' . $this->getLabelRequis() . '</label>
 		<select name="' . $this->getNom() . ($this->getOptions('multiple') ? '[]' : '') . '" ' . ($this->getOptions('multiple') ? 'multiple' : '') . '>';

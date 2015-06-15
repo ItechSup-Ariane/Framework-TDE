@@ -31,9 +31,9 @@ spl_autoload_register(function ($class) {
 });
 
 // Génération du formulaire
-/* * ********************** 	 */
+/* * **********************  */
 /* 			Form			 */
-/* * ********************** 	 */
+/* * **********************  */
 /**
  * 	Use this command to generate a new form
  * 	$form = new \ItechSup\Form('mon_form');
@@ -42,9 +42,9 @@ spl_autoload_register(function ($class) {
  */
 $form = new \ItechSup\Form('mon_form');
 
-/* * ********************** 	 */
+/* * **********************  */
 /* 		addWiget			 */
-/* * ********************** 	 */
+/* * **********************  */
 /**
  * 	Function addWiget :
  * 	use this function to add new widget on your form.
@@ -53,9 +53,9 @@ $form = new \ItechSup\Form('mon_form');
  * 		nom du groupe, par défaut appartenance à aucun groupe
  * 	);
  */
-/* * ********************** 	 */
+/* * **********************  */
 /* 		Inputs simples		 */
-/* * ********************** 	 */
+/* * **********************  */
 /**
  * 	Inputs
  * 	Mandatory settings
@@ -81,9 +81,9 @@ $form->addWidget(new \ItechSup\Widgets\InputText('ville', 'Saisis ta ville'), 'M
 $form->addWidget(new \ItechSup\Widgets\InputTextarea('commentaire', 'Laisse un commentaire'), 'Mon compte');
 $form->addWidget(new \ItechSup\Widgets\InputInt('corne', 'Saisis le nombre de cornes', array('default' => 1)), 'Ma licorne');
 
-/* * ********************** 	 */
+/* * **********************  */
 /* 		Inputs listes		 */
-/* * ********************** 	 */
+/* * **********************  */
 /*
   Paramètres obligatoires
   nom de l'élément
@@ -113,9 +113,9 @@ $form->addWidget(new \ItechSup\Widgets\InputList\InputSelect('jeux', 'A quoi jou
 $form->addWidget(new \ItechSup\Widgets\InputList\InputRadio('type_joueur', 'Choisis son apétit', array('Gourmande' => array('g1' => 'Mange tout le temps', 'g2' => 'Mange beaucoup'), 'Normale' => array('n1' => 'Mange à l\'heure des repas', 'n2' => 'Mange que le soir'))), 'Ma licorne');
 $form->addWidget(new \ItechSup\Widgets\InputList\InputCheckBox('materiel', 'Choisis son équipement', array('Corps' => array('selle' => 'Selle', 'brides' => 'Brides', 'eperons' => 'Eperons'), 'Tête' => array('casque' => 'Casque', 'visiere' => 'Visière', 'lunettes' => 'Lunettes de soleil'))), 'Ma licorne');
 
-/* * ********************** 	 */
+/* * **********************  */
 /* 			Boutons			 */
-/* * ********************** 	 */
+/* * **********************  */
 /*
   Paramètres obligatoires
   nom de l'élément
@@ -209,9 +209,9 @@ if (!empty($_POST)) {
                 echo '<div id="resultat"><pre>';
                 print_r($_POST);
                 echo '</pre></div>';
-            }
+            }            
+            echo $form->render(); 
             ?>
-            <?php echo $form->render(); ?>
         </div>
     </body>
 </html>

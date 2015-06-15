@@ -16,24 +16,24 @@ abstract class Widget extends Validator
     private $options;
     private $labelRequis;
 
-    function __construct($nom, $label = NULL, $options = NULL)
+    public function __construct($nom, $label = NULL, $options = NULL)
     {
         $this->nom = $nom;
         $this->label = (($label != NULL) ? $label : $nom );
         $this->options = $options;
     }
 
-    function getNom()
+    public function getNom()
     {
         return $this->nom;
     }
 
-    function getLabel()
+    public function getLabel()
     {
         return $this->label;
     }
 
-    function getValue()
+    public function getValue()
     {
         if (isset($this->options['default']) && empty($this->value)) {
             $this->setValue($this->options['default']);
@@ -41,32 +41,32 @@ abstract class Widget extends Validator
         return $this->value;
     }
 
-    function getType()
+    public function getType()
     {
         return $this->type;
     }
 
-    function getRequis()
+    public function getRequis()
     {
         return $this->requis;
     }
 
-    function getCode()
+    public function getCode()
     {
         return $this->code;
     }
 
-    function getLibelle()
+    public function getLibelle()
     {
         return $this->libelle;
     }
 
-    function getOptions($option)
+    public function getOptions($option)
     {
         return $this->options[$option];
     }
 
-    function getLabelRequis()
+    public function getLabelRequis()
     {
         if ($this->options['required'] == 1) {
             $this->setLabelRequis();
@@ -74,7 +74,7 @@ abstract class Widget extends Validator
         return $this->labelRequis;
     }
 
-    function getPlaceholder()
+    public function getPlaceholder()
     {
         if (isset($this->options['placeholder'])) {
             $this->setPlaceholder($this->options['placeholder']);
@@ -82,12 +82,12 @@ abstract class Widget extends Validator
         return $this->placeholder;
     }
 
-    function getMessageErreur()
+    public function getMessageErreur()
     {
         return $this->getLibelle();
     }
 
-    function getId()
+    public function getId()
     {
         if ($this->options['id'] != '') {
             $return = $this->options['id'];
@@ -97,52 +97,52 @@ abstract class Widget extends Validator
         return $return;
     }
 
-    function setType($type)
+    protected function setType($type)
     {
         $this->type = $type;
     }
 
-    function setNom($nom)
+    protected function setNom($nom)
     {
         $this->nom = $nom;
     }
 
-    function setLabel($label)
+    protected function setLabel($label)
     {
         $this->label = $label;
     }
 
-    function setValue($value)
+    protected function setValue($value)
     {
         $this->value = $value;
     }
 
-    function setRequis($requis)
+    protected function setRequis($requis)
     {
         $this->requis = $requis;
     }
 
-    function setCode($code)
+    protected function setCode($code)
     {
         $this->code = $code;
     }
 
-    function setLibelle($libelle)
+    protected function setLibelle($libelle)
     {
         $this->libelle = $libelle;
     }
 
-    function setLabelRequis()
+    protected function setLabelRequis()
     {
         $this->labelRequis = '<b class="asterix">*</b>';
     }
 
-    function setPlaceholder($placeholder)
+    protected function setPlaceholder($placeholder)
     {
         $this->placeholder = 'placeholder="' . $placeholder . '"';
     }
 
-    function render()
+    public function render()
     {
         $return = '<div class="champs"><label>' . $this->getLabel() . ' : ' . $this->getLabelRequis() . '</label>
 			<input id="' . $this->getId() . '" type="' . $this->getType() . '" name="' . $this->getNom() . '" value="' . $this->getValue() . '" ' . $this->getPlaceholder() . ' />'

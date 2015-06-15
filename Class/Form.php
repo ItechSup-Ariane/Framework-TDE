@@ -3,6 +3,7 @@
 namespace ItechSup;
 
 /**
+ * File containing the various methods and functions of the Form class.<br />
  * Fichier contenant les différentes méthodes et fonctions de la classe Form.
  * <ul>
  * <li>__construct()</li>
@@ -14,7 +15,7 @@ namespace ItechSup;
  * <li>validate()</li>
  * </ul>
  */
-class Form
+class Form 
 {
 
     private $method;
@@ -24,22 +25,35 @@ class Form
     private $name;
 
     /**
-     * Permet de construire l'objet Form
-     * Il prend en compte 3 paramètres
+     * Lets build the Form object<br />
+     * It considers 3 parameters<br />
+     * <br />
+     * <li> $ name: the name of the form </ li>
+     * <li> $ method: the form submission method, by default POST </ li>
+     * <li> $ action: destination path after submission, by default NULL </ li>
+     * <br />
+     * Permet de construire l'objet Form<br />
+     * Il prend en compte 3 paramètres<br />
+     * <br />
      * <ul>
      * <li>$name : le nom du formulaire</li>
      * <li>$method : méthode de soumission du formulaire, par défaut POST</li>
      * <li>$action : chemin de destination après soumission, par défaut à vide</li>
      * </ul>
      */
-    function __construct($name, $method = 'POST', $action = '')
+    public function __construct($name, $method = 'POST', $action = '')
     {
         $this->method = $method;
         $this->action = $action;
         $this->name = $name;
     }
 
-    function render()
+    /**
+     * Render function
+     * Return the form skeleton with fieldset
+     * @return string
+     */
+    public function render()
     {
         $return = '<form method="' . $this->method . '" action="' . $this->action . '" name="' . $this->name . '">';
         foreach ($this->getGroup() as $key => $value) {
@@ -57,23 +71,40 @@ class Form
         return $return;
     }
 
-    function getGroup()
+    /**
+     * Get Group
+     * @return type
+     */
+    public function getGroup()
     {
         return $this->groups;
     }
 
-    function getWidget()
+    /**
+     * Get Widget
+     * @return type
+     */
+    public function getWidget()
     {
         return $this->inputs;
     }
 
-    function addWidget($widget, $groups = NULL)
+    /**
+     * Add Widget in the form
+     * @param type $widget
+     * @param type $groups
+     */
+    public function addWidget($widget, $groups = NULL)
     {
         $this->inputs[$widget->getNom()] = $widget;
         $this->groups[$groups][] = $this->inputs[$widget->getNom()];
     }
 
-    function bind($data)
+    /**
+     * Bind data to the form
+     * @param type $data
+     */
+    public function bind($data)
     {
         $inputs = $this->getWidget();
         foreach ($data as $key => $value) {
@@ -81,7 +112,11 @@ class Form
         }
     }
 
-    function validate()
+    /**
+     * Validate function
+     * @return boolean
+     */
+    public function validate()
     {
         $error = true;
         $inputs = $this->getWidget();
