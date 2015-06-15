@@ -28,10 +28,10 @@ class Form
      * Lets build the Form object<br />
      * It considers 3 parameters<br />
      * <br />
-     * <li> $ name: the name of the form </ li>
-     * <li> $ method: the form submission method, by default POST </ li>
-     * <li> $ action: destination path after submission, by default NULL </ li>
-     * <br />
+     * <li> $ name: the name of the form </li>
+     * <li> $ method: the form submission method, by default POST </li>
+     * <li> $ action: destination path after submission, by default NULL </li>
+     * <br /><br />
      * Permet de construire l'objet Form<br />
      * Il prend en compte 3 paramètres<br />
      * <br />
@@ -90,7 +90,7 @@ class Form
     }
 
     /**
-     * Add Widget in the form
+     * Add Widget into the form
      * @param type $widget
      * @param type $groups
      */
