@@ -21,6 +21,12 @@ form, #resultat {
 	color: white;
 	margin-bottom: 20px;
 }
+fieldset {
+	border: 1px solid yellow;
+}
+legend {
+	color: yellow;
+}
 .champs{
 	width: 100%;
 	margin-bottom: 20px;
