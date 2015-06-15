@@ -15,6 +15,9 @@ class InputInt extends Widget
 
     /**
      * 
+     * @param type $name_widget
+     * @param type $label_widget
+     * @param type $options_widget
      */
     public function __construct($name_widget, $label_widget = NULL, $options_widget = NULL)
     {

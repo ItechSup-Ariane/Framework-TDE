@@ -8,7 +8,8 @@ class InputTextarea extends Widget
 {
 
     /**
-     * 
+     *
+     * @var type 
      */
     public $type = 'textarea';
 

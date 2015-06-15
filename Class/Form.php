@@ -18,6 +18,10 @@ namespace ItechSup;
 class Form 
 {
 
+    /**
+     *
+     * @var type 
+     */
     private $method;
     private $inputs = array();
     private $groups = array();
